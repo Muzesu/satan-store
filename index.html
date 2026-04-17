@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高質感商品頁面</title>
+    <style>
+
+.logo-img {
+    height: 80px;      /* 你可以調整高度來控制 Logo 大小 */
+    width: auto;       /* 寬度自動縮放，才不會變形 */
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); /* 給 Logo 一點點發光，在深色背景更明顯 */
+    transition: transform 0.3s;
+}
+
+.logo-img:hover {
+    transform: scale(1.05); /* 滑鼠移上去稍微放大，增加互動感 */
+}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* 修改重點：使用你的圖片作為背景 */
+            background-image: url('bg.jpg'); /* 確保檔名正確 */
+            background-size: cover;          /* 讓圖片鋪滿全螢幕 */
+            background-position: center;     /* 圖片居中 */
+            background-attachment: fixed;    /* 滾動時背景固定，會有高級感 */
+            
+            font-family: "Microsoft JhengHei", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 增加一個黑色半透明遮罩，確保 Logo 和卡片更明顯 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* 40% 的黑色遮罩 */
+            z-index: -1;
+        }
+
+       /* 1. 更新 Header 樣式，變成黑色長條 */
+header {
+    width: 100%;
+    background-color: #000000;
+    padding: 30px 0; /* 增加上下間距，讓 Logo 更大氣 */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1800px; /* 寬度開到最大，讓字體有空間平均分布 */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px; /* 增加左右留白 */
+}
+
+.nav-links {
+    display: flex;
+    gap: 120px; /* 標籤與標籤之間的距離拉得很開 */
+    flex: 1;
+}
+
+/* 讓左側標籤靠右，靠近 Logo 但保持適當大間距 */
+.nav-links.left {
+    justify-content: flex-end;
+    margin-right: 150px; 
+}
+
+/* 讓右側標籤靠左，靠近 Logo 但保持適當大間距 */
+.nav-links.right {
+    justify-content: flex-start;
+    margin-left: 150px;
+}
+
+/* 純白字體樣式 */
+.nav-links a {
+    background-color: transparent; /* 去掉背景色 */
+    color: #ffffff;               /* 純白字 */
+    text-decoration: none;
+    font-size: 20px;              /* 字體加大 */
+    font-weight: 900;             /* 極粗體 */
+    border: none;                 /* 去掉邊框 */
+    letter-spacing: 4px;          /* 字距拉開，更有設計感 */
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+/* 滑鼠移上去的微光效果 */
+.nav-links a:hover {
+    color: #aaaaaa;               /* 移上去變灰色，增加互動感 */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.logo-img {
+    height: 90px;                /* Logo 配合字體也稍微加大 */
+    width: auto;
+    display: block;
+}
+/* 手機版自動變成一列，避免太擠 (選修功能) */
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* 讓卡片寬度自適應網格 */
+.product-card {
+    width: 100%; /* 從原本固定 380px 改成 100% */
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    transition: 0.3s;
+}
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(45deg, #222, #444); /* 預設圖片位置也用深色系 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .product-info {
+            padding: 30px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .product-desc {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .add-cart-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px; /* 膠囊型按鈕更現代 */
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .add-cart-btn:hover {
+            background-color: #444;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="nav-container">
+        <div class="nav-links left">
+            <a href="#hot">HOT ITEMS</a>
+            <a href="#apparel">APPAREL</a>
+        </div>
+
+        <div id="logo-container">
+            <a href="index.html">
+                <img src="logo.png" alt="Logo" class="logo-img">
+            </a>
+        </div>
+
+        <div class="nav-links right">
+            <a href="#accessories">ACCESSORIES</a>
+            <a href="#merch">MERCH</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="product-card">
+        <div class="product-image"><span>商品圖片 1</span></div>
+        <div class="product-info">
+            <h2 class="product-title">撒旦限定 01</h2>
+            <p class="product-desc">這是一款充滿神秘感的設計，適合追求獨特風格的你。</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="product-price">$ 1,280</span>
+                <button class="add-cart-btn">立即購買</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><span>商品圖片 2</span></div>
+        <div class="product-info">
+            <h2 class="product-title">暗黑波紋 02</h2>
+            <p class="product-desc">與背景完美融合的設計，細節中透出不凡的質感。</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="product-price">$ 1,580</span>
+                <button class="add-cart-btn">立即購買</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><span>地獄之門 03</span></div>
+        <div class="product-info">
+            <h2 class="product-title">極致黑系列 03</h2>
+            <p class="product-desc">限量發售的經典款式，低調中帶有強大的氣場。</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="product-price">$ 2,100</span>
+                <button class="add-cart-btn">立即購買</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
