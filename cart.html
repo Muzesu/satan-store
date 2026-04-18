@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | SATAN STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            /* 使用跟首頁一樣的暗黑漸層 */
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* 讓內容垂直置中 */
+            text-align: center;
+        }
+
+        /* 購物車容器 */
+        .cart-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 60px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .cart-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            opacity: 0.3;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 16px;
+            color: #888;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        /* 返回購物按鈕 - 延續金屬風 */
+        .back-btn {
+            display: inline-block;
+            color: #000;
+            background-color: #fff;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 14px;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .back-btn:hover {
+            background-color: #000;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cart-container">
+        <div class="cart-icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <h1>Your Cart</h1>
+        <p>Your shopping cart is currently empty.</p>
+        <a href="index.html" class="back-btn">Return to Shop</a>
+    </div>
+
+</body>
+</html>

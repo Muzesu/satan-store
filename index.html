@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATAN STORE</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+/* 當螢幕寬度小於 768px 時（手機與平板） */
+@media (max-width: 768px) {
+    /* 1. 導覽列調整：隱藏部分文字，避免太擠 */
+    .nav-links.left, .nav-links.right {
+        margin: 0 10px;
+        gap: 10px;
+    }
+    
+    .nav-links a {
+        font-size: 12px; /* 字體變小 */
+        letter-spacing: 1px;
+    }
+
+    /* 2. 商品標題：縮小字體以免折行太嚴重 */
+    .product-title {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+
+    /* 3. 按鈕：改成上下堆疊，方便手指點擊 */
+    .button-group {
+        flex-direction: column; /* 從左右並排變成上下並排 */
+        gap: 15px;
+    }
+
+    .add-cart-btn, .buy-now-btn {
+        width: 100%; /* 按鈕變成長條狀，滿版好按 */
+        padding: 18px 0;
+        font-size: 14px;
+    }
+
+    /* 4. 購物車與會員圖示：稍微放大一點方便點擊 */
+    .cart-link i, .user-link i {
+        font-size: 24px;
+    }
+}
+
+/* 購物車圖示專屬樣式 */
+.cart-link {
+    margin-right: 20px; /* 與 HOT ITEMS 拉開距離 */
+    font-size: 22px !important; /* 圖示稍微大一點點 */
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.cart-link:hover {
+    color: #aaaaaa; /* 移上去變灰色 */
+    transform: scale(1.1); /* 微微放大 */
+}
+
+/* 為了讓左側三個元素依然整齊排列 */
+.nav-links.left {
+    align-items: center;
+}
+.logo-img {
+    height: 60px;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)); /* 給 Logo 一點微弱的白光，像金屬在發亮 */
+    transition: 0.5s;
+}
+
+.logo-img:hover {
+    transform: scale(1.05); /* 滑鼠移上去稍微放大，增加互動感 */
+}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+body {
+    /* 這裡就是設定背景的地方 */
+    background-image: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+    
+    /* 確保背景固定，滾動時不會跑掉 */
+    background-attachment: fixed; 
+    
+    /* 其他基本設定 */
+    margin: 0;
+    color: #ffffff;
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #000000; /* 備用背景色 */
+}
+            font-family: "Microsoft JhengHei", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 增加一個黑色半透明遮罩，確保 Logo 和卡片更明顯 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* 40% 的黑色遮罩 */
+            z-index: -1;
+        }
+
+       /* 1. 更新 Header 樣式，變成黑色長條 */
+header {
+    width: 100%;
+    /* 1. 毛玻璃底色：帶有一點金屬灰的半透明黑 */
+    background: rgba(15, 15, 15, 0.75);
+    
+    /* 2. 毛玻璃核心特效：霧面模糊 */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    /* 3. 金屬質感：利用超細微的線性漸層模擬光澤 */
+    background-image: linear-gradient(
+        110deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+
+    /* 4. 金屬邊框：頂部與底部加上極細的高光線，模擬金屬切邊 */
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+    /* 基本排版設定 */
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    /* 5. 深度陰影：讓金屬板更有厚度感 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}.nav-container {
+    max-width: 1800px; /* 寬度開到最大，讓字體有空間平均分布 */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px; /* 增加左右留白 */
+}
+
+.nav-links {
+    display: flex;
+    gap: 120px; /* 標籤與標籤之間的距離拉得很開 */
+    flex: 1;
+}
+
+/* 讓左側標籤靠右，靠近 Logo 但保持適當大間距 */
+.nav-links.left {
+    justify-content: flex-end;
+    margin-right: 150px; 
+}
+
+/* 讓右側標籤靠左，靠近 Logo 但保持適當大間距 */
+.nav-links.right {
+    justify-content: flex-start;
+    margin-left: 150px;
+<div class="nav-links right">
+    <a href="#accessories">ACCESSORIES</a>
+    <a href="#merch">MERCH</a>
+    <a href="profile.html" class="user-link">
+        <i class="fa-regular fa-user"></i>
+    </a>
+</div>
+}
+
+/* 純白字體樣式 */
+.nav-links a {
+    background-color: transparent; /* 去掉背景色 */
+    color: #ffffff;               /* 純白字 */
+    text-decoration: none;
+    font-size: 20px;              /* 字體加大 */
+    font-weight: 900;             /* 極粗體 */
+    border: none;                 /* 去掉邊框 */
+    letter-spacing: 4px;          /* 字距拉開，更有設計感 */
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+/* 滑鼠移上去的微光效果 */
+.nav-links a:hover {
+    color: #aaaaaa;               /* 移上去變灰色，增加互動感 */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.logo-img {
+    height: 90px;                /* Logo 配合字體也稍微加大 */
+    width: auto;
+    display: block;
+}
+    main {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* 讓卡片寬度自適應網格 */
+.product-card {
+    width: 100%; /* 從原本固定 380px 改成 100% */
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    transition: 0.3s;
+}
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(45deg, #222, #444); /* 預設圖片位置也用深色系 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .product-info {
+            padding: 30px;
+        }
+
+        .product-title {
+    /* 1. 字體顏色：不使用 #fff 純白，改用淺灰色，讓光暈更明顯 */
+    color: #cccccc; 
+    
+    /* 2. 字體基本樣式 (根據你的需求調整大小) */
+    font-size: 32px; 
+    font-weight: 800; /* 圖中字體偏粗 */
+    text-transform: uppercase; /* 大寫英文 */
+    letter-spacing: 3px; /* 增加字距，提升質感 */
+    margin-bottom: 20px;
+
+    /* 3. 關鍵：精確的靜態微光陰影 */
+    /* 我們使用一層柔和的白色光暈，擴散半徑設為 8px，透明度設為 0.5 */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+
+    /* 4. 字體 (圖中字體看起來像 Inter 或 Helvetica Neue) */
+    font-family: 'Inter', Helvetica, Arial, sans-serif;
+}
+
+        .product-desc {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+      /* 價格文字樣式 */
+.product-price {
+    color: #ffffff !important; /* 強制設定為純白色 */
+    font-size: 24px;           /* 稍微加大，讓價格清晰可見 */
+    font-weight: 700;          /* 加粗，展現品牌質感 */
+    letter-spacing: 2px;       /* 增加字距，這就是高級感的來源 */
+    margin: 15px 0;            /* 與上下內容保持適度距離 */
+    display: block;            /* 確保它獨立佔一行 */
+}
+
+/* 如果你想要在價格前面加一個微弱的發光感，可以加這行 (可選) */
+/* text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); */
+
+     /* 按鈕容器 */
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+/* 統一的毛玻璃金屬按鈕樣式 */
+.add-cart-btn, .buy-now-btn {
+    flex: 1;
+    padding: 15px 5px;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    
+    /* 毛玻璃核心 */
+    background: rgba(40, 40, 40, 0.4); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    /* 金屬邊框感：使用微透明的白邊模擬冷冽金屬 */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border-radius: 4px; /* 歐美精品偏好微小圓角或直角 */
+
+    /* 陰影增加厚度感 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 滑鼠移入效果：增加亮度與光澤 */
+.add-cart-btn:hover, .buy-now-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5); /* 邊框變亮，像拋光金屬反射 */
+    transform: translateY(-2px); /* 輕微浮起 */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+/* 點擊時的視覺回饋 */
+.add-cart-btn:active, .buy-now-btn:active {
+    transform: translateY(1px);
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="nav-container">
+        <div class="nav-links left">
+            <a href="cart.html" class="cart-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <a href="#hot">HOT ITEMS</a>
+            <a href="#apparel">APPAREL</a>
+        </div>
+
+        <div id="logo-container">
+            <a href="index.html">
+                <img src="logo.png" alt="Logo" class="logo-img">
+            </a>
+        </div>
+
+        <div class="nav-links right">
+    <a href="#accessories">ACCESSORIES</a>
+    <a href="#merch">MERCH</a>
+    
+    <a href="profile.html" class="user-link">
+       <i class="fa-regular fa-user"></i>
+    </a>
+</div>
+    </nav>
+</header>
+<main>
+<div class="product-info">
+    <h2 class="product-title">SATAN LIMITED 01</h2>
+    <p class="product-desc">An exclusive piece designed for those who seek a unique and mysterious style.</p>
+    
+    <div class="price-row">
+        <span class="product-price">$ 49.00</span>
+    </div>
+
+    <div class="button-group">
+        <button class="add-cart-btn" onclick="addToCart('SATAN LIMITED 01', 49.00)">ADD TO CART</button>
+        <button class="buy-now-btn">BUY NOW</button>
+    </div>
+</div>
+</main>
+
+</body>
+</html>
