@@ -4,11 +4,60 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     </head>
+    <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    ...
+</head>
     <title>SATAN STORE</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* --- 手機版自動調整 (響應式設計) --- */
+@media (max-width: 768px) {
+    /* 1. 讓整體內容不超過螢幕寬度，消除橫向滾動 */
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* 2. 導覽列調整：字縮小、間距變窄 */
+    header {
+        padding: 10px 5px;
+        flex-wrap: wrap; /* 讓內容太擠時自動換行 */
+    }
+
+    .nav-links a {
+        font-size: 10px; /* 手機字體要小一點 */
+        letter-spacing: 1px;
+        margin: 0 5px;
+    }
+
+    /* 3. 商品區塊調整 */
+    .product-title {
+        font-size: 20px; /* 縮小標題 */
+        letter-spacing: 2px;
+    }
+
+    /* 4. 按鈕改為上下堆疊 (重點！) */
+    .button-group {
+        flex-direction: column; /* 左右並排改為上下並排 */
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .add-cart-btn, .buy-now-btn {
+        width: 100%; /* 按鈕變滿版，手指才好點 */
+        margin-bottom: 10px;
+        padding: 15px 0;
+    }
+
+    /* 5. 隱藏部分不重要的文字避免手機太亂 */
+    .product-desc {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+}
 /* 當螢幕寬度小於 768px 時（手機與平板） */
 @media (max-width: 768px) {
     /* 1. 導覽列調整：隱藏部分文字，避免太擠 */
